@@ -1,0 +1,96 @@
+.car__item {
+  background-color: rgba(247, 244, 244, 0.635) ;
+  padding: 5px;
+  box-shadow: 20px;
+  box-shadow: darkslategray;
+  border-radius: 15px;
+}
+
+.car__item-info span i {
+  color: #ff0000;
+  font-size: large;
+}
+
+
+.car__item-btn {
+  border-radius: 25;
+  border: none;
+  outline: none;
+  background: royalblue;
+  padding: 8px 0px;
+}
+
+.car__item-btn a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+}
+
+.car__item-btn a:hover {
+  color: #fff;
+}
+.car__btn-details {
+  background: yellowgreen;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.car__btn-rent {
+  border-radius: 10px;
+}
+
+.car__item-content h4 {
+  font-size: large;
+}
+
+.car__item-content h6 {
+  font-size: large;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 992px) {
+  .car__item h4 {
+    font-size: large;
+    margin-bottom: 0;
+  }
+
+  .car__item h6 {
+    font-size: large;
+    margin-top: 10px;
+  }
+
+  .car__item-info {
+    flex-wrap: wrap;
+  }
+
+  .car__item-info span {
+    font-size: medium;
+    justify-content: space-between;
+  }
+
+  .car__item-btn {
+    padding: 5px 10px;
+    font-size: large;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .car__item h4 {
+    font-size: medium;
+  }
+
+  .car__item h6 {
+    font-size: medium;
+  }
+
+  .car__item-info span {
+    font-size: medium;
+  }
+
+  .car__item-info span i {
+    font-size: medium;
+  }
+
+  .car__item-btn {
+    font-size: medium;
+  }
+}
