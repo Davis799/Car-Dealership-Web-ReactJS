@@ -50,12 +50,12 @@ const CarListing = () => {
       item.seats.toString().toLowerCase().includes(sts.toString().toLowerCase()) &&
       item.wheelDrive.toString().toLowerCase().includes(wd.toString().toLowerCase()) &&
       item.color.toString().toLowerCase().includes(col.toString().toLowerCase()) &&
-      // (parseInt(item.manufacturingYear.toString().toLowerCase()) >= parseInt(minYr.toString().toLowerCase()) &&
-      //   parseInt(item.manufacturingYear.toString().toLowerCase()) <= parseInt(maxYr.toString().toLowerCase())) &&
-      // (parseInt(item.engineSize.toString().toLowerCase()) >= parseInt(minEng.toString().toLowerCase()) &&
-      //   parseInt(item.engineSize.toString().toLowerCase()) <= parseInt(maxEng.toString().toLowerCase())) &&
-      // (parseInt(item.mileage.toString().toLowerCase()) >= parseInt(minMile.toString().toLowerCase()) &&
-      //   parseInt(item.mileage.toString().toLowerCase()) <= parseInt(maxMile.toString().toLowerCase())) &&
+      (parseInt(item.manufacturingYear.toString().toLowerCase()) >= parseInt(minYr.toString().toLowerCase()) &&
+        parseInt(item.manufacturingYear.toString().toLowerCase()) <= parseInt(maxYr.toString().toLowerCase())) &&
+      (parseInt(item.engineSize.toString().toLowerCase()) >= parseInt(minEng.toString().toLowerCase()) &&
+        parseInt(item.engineSize.toString().toLowerCase()) <= parseInt(maxEng.toString().toLowerCase())) &&
+      (parseInt(item.mileage.toString().toLowerCase()) >= parseInt(minMile.toString().toLowerCase()) &&
+        parseInt(item.mileage.toString().toLowerCase()) <= parseInt(maxMile.toString().toLowerCase())) &&
       item.transmission.toString().toLowerCase().includes(transmssn.toString().toLowerCase()) &&
       item.location.toString().toLowerCase().includes(loc.toString().toLowerCase())
     );

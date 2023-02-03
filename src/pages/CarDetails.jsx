@@ -16,62 +16,34 @@ import { EffectFade, Navigation, Pagination } from "swiper";
 
 const CarDetails = () => {
   const { slug } = useParams();
-  const [Car, setCar] = useState({});
+  const [Car, setCar] = useState([{}]);
+  const [images, setImages] = useState([{}]);
 
-
-
-  const getCar = () => {
-    axios.get(`http://localhost:3000/cars/${slug}`)
-      .then(res => {
-        setCar(res.data.car[0]);
-        console.log(Car.images);
-      })
-  }
 
 
   useEffect(() => {
-    getCar();
+
+    axios.get(`http://localhost:3000/cars/${slug}`)
+      .then(res => {
+        setCar(res.data[0]);
+        //console.log(Car);
+        setImages(res.data[0].images);
+        // console.log(images);
+      })
     window.scrollTo(0, 0);
-  }, [slug])
-
-
-  const singleCarItem = Car
-
-  const images = { ...Car.images }
-  console.log(images[0])
-
-
-  //  for (let i = 0; index < images.length; i++) {
-  //     const carimages = [{url: "http://localhost:3000/images/"+images[i].imgname}]
-  //   }
-
-  // const carimages = [
-  //   //   { url: "http://localhost:3000/images/" + images[0].imgname },
-  //   // { url: "http://localhost:3000/images/" + images[1].imgname },
-  //   // { url: "http://localhost:3000/images/" + images[2].imgname },
-  //   // { url: "http://localhost:3000/images/" + images[3].imgname },
-  //   // { url: "http://localhost:3000/images/" + images[4].imgname },
-  //   // { url: "http://localhost:3000/images/" + images[5].imgname },
-  // ]
-
-
+  },
+    []
+  )
 
 
   return (
-    <Helmet title={singleCarItem.images}>
-      {/* {
-        carimages === null ? () => {
-          for (var i = 0; i < 3; i++) {
-            getCar();
-          }
-        }
-          : */}
+    <Helmet title={Car.name}>
+
       <section>
         <Container>
           <Row>
             <Col lg="7">
               <div>
-
                 <Swiper
                   spaceBetween={30}
                   effect={"fade"}
@@ -82,28 +54,24 @@ const CarDetails = () => {
                   modules={[EffectFade, Navigation, Pagination]}
                   className=" "
                 >
+                  {images.length > 1 ?
+                    images.map((item, index) => (
+                      <SwiperSlide key={index}>
+                        <img src={`http://localhost:3000/images/${images[index].imgname}`} />
+                      </SwiperSlide>
 
-                  <div>Got them images</div>
-
-                  <SwiperSlide>
-                    <img src={`http://localhost:3000/images/${images[0].imgname}`} />
-                  </SwiperSlide>
-                  {/* <SwiperSlide>
-                    <img src={`http://localhost:3000/images/${images[1].imgname}`} />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <img src={`http://localhost:3000/images/${images[2].imgname}`} />
-                  </SwiperSlide>  */}
+                    ))
+                    : null}
                 </Swiper>
               </div>
             </Col>
             <Col lg="5" className=" font-sans">
               <div className="car__info">
-                <h2 className="font-sans font-semibold text-4xl">{singleCarItem.name}</h2>
+                <h2 className="font-sans font-semibold text-4xl">{Car.name}</h2>
 
                 <div className=" d-flex align-items-center gap-5 mb-4 mt-3">
                   <h6 className="rent__price fw-bold fs-4 font-sans">
-                    Tsh {singleCarItem.price}.00
+                    Tsh {Car.price}.00
                   </h6>
                 </div>
 
@@ -113,25 +81,25 @@ const CarDetails = () => {
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Maker
                         <br />
-                        <p className=" font-normal">{singleCarItem.maker}</p></div>
+                        <p className=" font-normal">{Car.maker}</p></div>
                     </div>
                     <div className=" text-left">
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Type
                         <br />
-                        <p className=" font-normal">{singleCarItem.type}</p></div>
+                        <p className=" font-normal">{Car.type}</p></div>
                     </div>
                     <div className=" text-left">
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Chassis
                         <br />
-                        <p className=" font-normal">{singleCarItem.chassis}</p></div>
+                        <p className=" font-normal">{Car.chassis}</p></div>
                     </div>
                     <div className=" text-left">
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Model
                         <br />
-                        <p className=" font-normal">{singleCarItem.model}</p></div>
+                        <p className=" font-normal">{Car.model}</p></div>
                     </div>
                     <div className=" text-left">
                       <div className=" border-2 border-t-red-600"></div>
@@ -143,13 +111,13 @@ const CarDetails = () => {
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Mileage
                         <br />
-                        <p className=" font-normal">{singleCarItem.mileage}</p></div>
+                        <p className=" font-normal">{Car.mileage}</p></div>
                     </div>
                     <div className=" text-left">
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Engine Size
                         <br />
-                        <p className=" font-normal">{singleCarItem.engineSize}</p></div>
+                        <p className=" font-normal">{Car.engineSize}</p></div>
                     </div>
                     <div className=" text-left">
                       <div className=" border-2 border-t-red-600"></div>
@@ -161,10 +129,10 @@ const CarDetails = () => {
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Manufacturing Year
                         <br />
-                        <p className=" font-normal">{singleCarItem.manufacturingYear}</p></div>
+                        <p className=" font-normal">{Car.manufacturingYear}</p></div>
                     </div>
                     <div className="payment text-center m-4">
-                      <button className=" text-l">Buy Now</button>
+                      <button className=" px-3 py-1 rounded-xl text-xl bg-blue-600 font-semibold text-white" onClick={() => { }}>Buy Now</button>
                     </div>
                   </div>
 
@@ -173,13 +141,13 @@ const CarDetails = () => {
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Color
                         <br />
-                        <p className=" font-normal">{singleCarItem.color}</p></div>
+                        <p className=" font-normal">{Car.color}</p></div>
                     </div>
                     <div className=" text-left">
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Wheel Drive
                         <br />
-                        <p className=" font-normal">{singleCarItem.wheelDrive}</p></div>
+                        <p className=" font-normal">{Car.wheelDrive}</p></div>
                     </div>
                     <div className=" text-left">
                       <div className=" border-2 border-t-red-600"></div>
@@ -191,37 +159,37 @@ const CarDetails = () => {
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Location
                         <br />
-                        <p className=" font-normal">{singleCarItem.location}</p></div>
+                        <p className=" font-normal">{Car.location}</p></div>
                     </div>
                     <div className=" text-left">
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Steering
                         <br />
-                        <p className=" font-normal">{singleCarItem.steering}</p></div>
+                        <p className=" font-normal">{Car.steering}</p></div>
                     </div>
                     <div className=" text-left">
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Fuel
                         <br />
-                        <p className=" font-normal">{singleCarItem.fuel}</p></div>
+                        <p className=" font-normal">{Car.fuel}</p></div>
                     </div>
                     <div className=" text-left">
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Seats
                         <br />
-                        <p className=" font-normal">{singleCarItem.seats}</p></div>
+                        <p className=" font-normal">{Car.seats}</p></div>
                     </div>
                     <div className=" text-left">
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Doors
                         <br />
-                        <p className=" font-normal">{singleCarItem.doors}</p></div>
+                        <p className=" font-normal">{Car.doors}</p></div>
                     </div>
                     <div className=" text-left">
                       <div className=" border-2 border-t-red-600"></div>
                       <div className=" font-bold">Weight
                         <br />
-                        <p className=" font-normal">{singleCarItem.weight}</p></div>
+                        <p className=" font-normal">{Car.weight}</p></div>
                     </div>
                   </div>
                 </div>

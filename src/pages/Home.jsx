@@ -16,14 +16,14 @@ import { useEffect } from "react";
 import BlogItem from "../components/UI/BlogItem";
 
 const Home = () => {
-  const [Cars, setCars] = useState([]);
-  const [Blogs, setBlogs] = useState([]);
+  const [Cars, setCars] = useState([{}]);
+  const [Blogs, setBlogs] = useState([{}]);
 
   useEffect(() => {
     axios.get("http://localhost:3000/cars")
       .then(res => {
         setCars(res.data.cars);
-
+        console.log(Cars);
         axios.get("http://localhost:3000/reviews/")
           .then(res => {
             setBlogs(res.data.reviews);

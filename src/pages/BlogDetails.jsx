@@ -58,32 +58,7 @@ const BlogDetails = () => {
                 <div className=" ">
 
 
-                  {/* =============== comment form ============ */}
-                  {/* <div className="leave__comment-form mt-5">
-                  <h4>Leave a Comment</h4>
-                  <p className="section__description">
-                    You must sign-in to make or comment a post
-                  </p>
 
-                  <Form>
-                    <FormGroup className=" d-flex gap-3">
-                      <Input type="text" placeholder="Full name" />
-                      <Input type="email" placeholder="Email" />
-                    </FormGroup>
-
-                    <FormGroup>
-                      <textarea
-                        rows="5"
-                        className="w-100 py-2 px-3"
-                        placeholder="Comment..."
-                      ></textarea>
-                    </FormGroup>
-
-                    <button className="btn comment__btn mt-3">
-                      Post a Comment
-                    </button>
-                  </Form>
-                </div> */}
                 </div>
               </Col>
             </div>
