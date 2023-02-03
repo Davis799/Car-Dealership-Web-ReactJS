@@ -14,6 +14,7 @@ import "swiper/css/pagination";
 import { EffectFade, Navigation, Pagination } from "swiper";
 
 
+
 const CarDetails = () => {
   const { slug } = useParams();
   const [Car, setCar] = useState([{}]);
@@ -34,6 +35,35 @@ const CarDetails = () => {
   },
     []
   )
+  function buynow() {
+    // let message = {
+    // "{Car.name}"
+    // "{Car.maker}"
+    // {Car.type}
+    // {Car.chassis}
+    // {Car.model}
+    // {Car.engineCode}
+    // {Car.mileage}
+    // {Car.engineSize}
+    // {Car.registrationYear}
+    // {Car.manufacturingYear}
+    // {Car.color}
+    // {Car.wheelDrive}
+    // {Car.transmission}
+    // {Car.location}
+    // {Car.steering}
+    // {Car.fuel}
+    // "{Car.seats}"
+    // "{Car.doors}"
+    // "{Car.weight}"
+    // }
+    let url = `https://web.whatsapp.com/send?phone=${+255693134744}`;
+
+    url += `&text=${encodeURI((Car.name) + "\n" + (Car.maker) + "\n" + (Car.model) + "\n" + (Car.registrationYear) + "\n" + (Car.price) + "\n" + "http://localhost:3000/cars/" + slug)}&app_absent=0`;
+
+
+    window.open(url);
+  }
 
 
   return (
@@ -132,7 +162,7 @@ const CarDetails = () => {
                         <p className=" font-normal">{Car.manufacturingYear}</p></div>
                     </div>
                     <div className="payment text-center m-4">
-                      <button className=" px-3 py-1 rounded-xl text-xl bg-blue-600 font-semibold text-white" onClick={() => { }}>Buy Now</button>
+                      <button className=" px-3 py-1 rounded-xl text-xl bg-blue-600 font-semibold text-white" onClick={() => { buynow() }}>Buy Now</button>
                     </div>
                   </div>
 
